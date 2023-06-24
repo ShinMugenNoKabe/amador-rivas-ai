@@ -11,8 +11,8 @@ def write_tweet(news_header: str, news_content: str, news_link: str):
     prompt = f"""
 
     Escríbeme un Twit actuando como si fueses Amador Rivas (personaje de la famosa serie "La Que se Avecina") muy exagerado
-    para que gane mucha visibilidad en base a la siguiente noticia (riéndote de la noticia con mal carácter)
-    (DEBE DE TENER UN MÁXIMO DE 180 CARACTERES).
+    para que gane mucha visibilidad en base a la siguiente noticia (riéndote de la noticia con mal carácter).
+    Intenta que no sean demasiados caracteres, twitter tiene un límite.
     Además no te repitas, intenta crear twits nuevos cada vez.
 
     Título: "{news_header}"
