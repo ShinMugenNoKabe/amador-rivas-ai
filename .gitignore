@@ -1,4 +1,5 @@
 twitter_bot
 .env
+.env_rufino
 **/.vscode
 **/__pycache__

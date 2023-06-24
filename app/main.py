@@ -1,12 +1,17 @@
-from get_news import get_news
-from write_tweet import write_tweet
-from send_tweet import send_tweet
+from schedule_twit_every_hour import schedule_twit_every_hour
+import schedule
+import time
+import logging
 
 
 def main():
-    news_header, news_content, news_link = get_news()
-    twit = write_tweet(news_header, news_content, news_link)[0]
-    send_tweet(twit)
+    logging.info(f"Bot is on")
+    
+    schedule.every(1).hours.do(schedule_twit_every_hour)
+    
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
 
 
 if __name__ == "__main__":

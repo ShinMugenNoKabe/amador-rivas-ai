@@ -1,6 +1,7 @@
 import tweepy
 import os
 from dotenv import load_dotenv
+import logging
 
 load_dotenv()
 
@@ -13,9 +14,12 @@ def send_tweet(message: str):
         access_token_secret=os.getenv("TWITTER_ACCESS_TOKEN_SECRET")
     )
     
-    client.create_tweet(text=message)
-    
-    print("Tweeted")
+    try:
+        print(message)
+        client.create_tweet(text=message)
+        print("Tweeted")
+    except Exception as e:
+        logging.error(f"UNEXPECTED ERROR: {e}")
     
     
 if __name__ == "__main__":

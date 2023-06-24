@@ -1,6 +1,7 @@
 import os
 import openai
 from dotenv import load_dotenv
+import pyshorteners
 
 load_dotenv()
 
@@ -9,7 +10,10 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 def write_tweet(news_header: str, news_content: str, news_link: str):
     prompt = f"""
 
-    Escríbeme un Twit polémico para que gane mucha visibilidad en base a la siguiente noticia (riéndote de la noticia con mal carácter) (DEBE DE TENER UN MÁXIMO DE 240 CARACTERES):
+    Escríbeme un Twit actuando como si fueses Amador Rivas (personaje de la famosa serie "La Que se Avecina") muy exagerado
+    para que gane mucha visibilidad en base a la siguiente noticia (riéndote de la noticia con mal carácter)
+    (DEBE DE TENER UN MÁXIMO DE 180 CARACTERES).
+    Además no te repitas, intenta crear twits nuevos cada vez.
 
     Título: "{news_header}"
     
@@ -30,4 +34,6 @@ def write_tweet(news_header: str, news_content: str, news_link: str):
         stop=["\n"]
     )
     
-    return [f'{choice["message"]["content"]} {news_link}' for choice in response["choices"]]
+    shortened_news_link = pyshorteners.Shortener().tinyurl.short(news_link)
+    
+    return [f'{choice["message"]["content"]} {shortened_news_link}' for choice in response["choices"]]
