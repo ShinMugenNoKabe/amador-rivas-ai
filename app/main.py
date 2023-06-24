@@ -13,7 +13,7 @@ def start_thread(func):
 def main():
     logging.info(f"Bot is on")
     
-    schedule.every().minute.at(":30").do(start_thread, schedule_twit_every_hour)
+    schedule.every().hour.at(":30").do(start_thread, schedule_twit_every_hour)
     
     while True:
         schedule.run_pending()
