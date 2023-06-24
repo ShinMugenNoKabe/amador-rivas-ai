@@ -7,7 +7,7 @@ import logging
 def main():
     logging.info(f"Bot is on")
     
-    schedule.every().minute.at(":30").do(schedule_twit_every_hour)
+    schedule.every(20).seconds.do(schedule_twit_every_hour)
     
     while True:
         schedule.run_pending()
