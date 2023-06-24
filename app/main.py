@@ -5,15 +5,12 @@ import logging
 import threading
 
 
-def start_thread(func):
-    job = threading.Thread(target=func)
-    job.start()
-
-
 def main():
     logging.info(f"Bot is on")
     
-    schedule.every().hour.at(":30").do(start_thread, schedule_twit_every_hour)
+    schedule_twit_every_hour()
+    
+    schedule.every(3).hours.at(":00").do(schedule_twit_every_hour)
     
     while True:
         schedule.run_pending()
